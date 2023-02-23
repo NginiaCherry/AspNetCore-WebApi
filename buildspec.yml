@@ -18,5 +18,5 @@ phases:
 
 artifacts:
   files:
-    - "**/*"
-    - dotnetcore-api-deployment-package.zip
+    - '**/*'
+  
