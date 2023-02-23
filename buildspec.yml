@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      dotnet: 3.1
+  build:
+    commands:
+      # Restore NuGet packages
+      dotnet restore
+      # Build the .NET Core API project
+      dotnet build -c Release
+      # Publish the project for deployment
+      dotnet publish -c Release -o ./publish
+      # Create a ZIP archive of the publish folder
+      cd publish
+      zip -r ../dotnetcore-api-deployment-package.zip *
+
+artifacts:
+  files:
+    - dotnetcore-api-deployment-package.zip
