@@ -1,0 +1,14 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::Lambda::Function
+      Properties:
+        Name: YourLambdaFunctionName
+        Alias: prod
+        CurrentVersion: "1"
+Deployment:
+  - Revision:
+      RevisionType: S3
+      S3Location:
+        Bucket: !Ref "CodePipelineArtifactsBucket"
+        Key: !Sub "${CodePipeline.ArtifactName::dotnetcore-api-deployment-package}.zip"
