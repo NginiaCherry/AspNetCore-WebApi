@@ -1,10 +1,11 @@
 using System;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.CodeDeployEvents;
+using AspNetCore-WebApi;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
-namespace MyDotNetCoreApi
+namespace AspNetCore-WebApi
 {
     public class Function
     {
