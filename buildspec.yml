@@ -7,14 +7,14 @@ phases:
   build:
     commands:
       # Restore NuGet packages
-      dotnet restore
+     - dotnet restore
       # Build the .NET Core API project
-      dotnet build -c Release
+     - dotnet build -c Release
       # Publish the project for deployment
-      dotnet publish -c Release -o ./publish
+     - dotnet publish -c Release -o ./publish
       # Create a ZIP archive of the publish folder
-      cd publish
-      zip -r ../dotnetcore-api-deployment-package.zip *
+     - cd publish
+     - zip -r ../dotnetcore-api-deployment-package.zip *
 
 artifacts:
   files:
