@@ -3,12 +3,12 @@ Resources:
   - TargetService:
       Type: AWS::Lambda::Function
       Properties:
-        Name: YourLambdaFunctionName
-        Alias: prod
+        Name: mydotnetcoreApiFxn
+        Alias: staging
         CurrentVersion: "1"
 Deployment:
   - Revision:
       RevisionType: S3
       S3Location:
-        Bucket: !Ref "CodePipelineArtifactsBucket"
+        Bucket: !Ref "codedeployforlambdap"
         Key: !Sub "${CodePipeline.ArtifactName::dotnetcore-api-deployment-package}.zip"
