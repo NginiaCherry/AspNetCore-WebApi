@@ -4,7 +4,7 @@ Resources:
       Type: AWS::Lambda::Function
       Properties:
         Name: mydotnetcoreApiFxn
-        Alias: staging
+        Alias: staging2
         CurrentVersion: "1"
 Deployment:
   - Revision:
