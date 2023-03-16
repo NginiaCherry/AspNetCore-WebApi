@@ -19,6 +19,6 @@ phases:
 artifacts:
   files:
     - '**/*'
-    - metadata:
+      metadata:
         Content-Type: text/plain
   
