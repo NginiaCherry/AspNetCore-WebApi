@@ -15,9 +15,9 @@ phases:
       # Create a ZIP archive of the publish folder
      - cd publish
      - zip -r ../dotnetcore-api-deployment-package.zip *
-   post_build:
+  post_build:
     commands:
-      - aws s3 cp ./artifact.zip s3://codepipeline-us-east-1-328276321967/codedeployforlambdap/BuildArtif --metadata "Content-Type=text/plain"
+      - aws s3api copy-object --copy-source codedeployforlambdap/BuildArtif --recursive --metadata-directive REPLACE --metadata "Content-Type=text/plain" --bucket codedeployforlambdap/BuildArtif --exclude "*" --include "**/*"
 
 artifacts:
   files:
