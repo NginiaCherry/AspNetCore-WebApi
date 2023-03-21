@@ -15,12 +15,25 @@ phases:
       # Create a ZIP archive of the publish folder
      - cd publish
      - zip -r ../dotnetcore-api-deployment-package.zip *
+  post_build:
+    commands:
+     # Download the artifact zip file from S3
+      - aws s3 cp s3://codepipeline-us-east-1-328276321967/codedeployforlambdap/BuildArtif/$CODEBUILD_BUILD_ID/$CODEBUILD_BUILD_ID.zip $CODEBUILD_BUILD_ID.zip
+      
+      # Extract the file you want to modify from the zip file
+      - unzip $CODEBUILD_BUILD_ID.zip $CODEBUILD_BUILD_ID/sni.dll
+      
+      # Modify the content type metadata of the file
+      - aws s3 cp $CODEBUILD_BUILD_ID/sni.dll s3://codepipeline-us-east-1-328276321967/codedeployforlambdap/BuildArtif/$CODEBUILD_BUILD_ID/$CODEBUILD_BUILD_ID/sni.dll --content-type "plain/text"
+      
+      # Re-add the modified file to the zip file
+      - zip -u $CODEBUILD_BUILD_ID.zip $CODEBUILD_BUILD_ID/sni.dll
   
 artifacts:
   files:
     - '**/*'
   discard-paths: yes
-  metadata:
-    Content-Type: text/plain
+ # metadata:
+  #  Content-Type: text/plain
       
   
